@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${title}"></title>
+</head>
+<body>
+<h1 th:text="${title}"></h1>
+
+<h3 th:text="${invoice.getDescription()}"></h3>
+<div>Client: <span th:text="${invoice.getClient().firstName + ' ' + invoice.getClient().getLastName()}"></span></div>
+<h4>Invoice details</h4>
+<table>
+    <thead>
+    <tr>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item: ${invoice.getItems() }  ">
+        <td th:text="${item.getProduct().getName()}"></td>
+        <td th:text="${item.getProduct().getPrice()}"></td>
+        <td th:text="${item.getQuantity()}"></td>
+        <td th:text="${item.getTotal()}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
